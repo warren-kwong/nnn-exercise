@@ -17,8 +17,8 @@ a {
 
 .header {
   width: 100%;
-  box-shadow: 0px 2px 600px 0px rgba(0, 0, 0, 0.2);
-  z-index: 3;
+  box-shadow: 2px 2px 5px rgba(150, 150, 150, 0.5);
+  position: fixed;
 }
 
 .banner {
@@ -42,6 +42,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-right: 15px;
 }
 
 .header-nav__logo {
@@ -57,6 +58,7 @@ a {
 
 .menu__item {
   padding: 20px 10px;
+  display: none;
 }
 
 
@@ -70,13 +72,18 @@ a {
 }
 
 .menu__item:hover, 
-.menu__item:hover > a, 
+.menu__item:hover > a,
+.mobile-menu__item:hover span, 
+.mobile-menu__item:hover > a, 
 .menu__item:hover .down-arrow,
 .dropdown__item:hover > a {
   color: #f06324;
 }
 
-.menu__item:hover .dropdown {
+.menu__item:hover .dropdown,
+.menu__item:focus .dropdown,
+.mobile-menu__item:focus .dropdown,
+.mobile-menu__item:hover .dropdown {
   opacity: 1;
   visibility: visible;
 }
@@ -117,12 +124,59 @@ a {
   padding: 10px;
 }
 
+.mobile-menu__icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-around;
+}
 
+.mobile-menu__icon > div {
+  height: 3px;
+  width: 20px;
+  background: #444;
+  border-radius: 15px;
+  margin: 2px;
+}
+
+.mobile-menu {
+  display: none;
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  list-style: none;
+}
+
+.mobile-menu__item {
+  margin: 15px 10px;
+}
+
+.mobile-menu__item a{
+  color: #444;
+  font-weight: 400;
+}
+
+.mobile-dropdown {
+  list-style: none;
+  display: none;
+  padding: 10px 10px;
+  width: 100%;
+}
 
 .cover {
-  width: 100%;
   background: url(https://www.nomnomnow.com/images/home/cover_child_dog.jpg);
   background-position: center center;
   background-size: cover;
   height: 50vw;
+}
+
+@media (min-width: 800px) {
+  .menu__item {
+    display: block;
+  }
+
+  .mobile-menu__icon,
+  .mobile-menu {
+    display: none;
+  }
 }
