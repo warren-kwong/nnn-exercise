@@ -1,5 +1,8 @@
+var hamburgerMenu = document.getElementById("hamburger-icon")
+var mobileMenu = document.getElementById('mobile-menu')
+var mobileMenuItems = document.querySelectorAll('.mobile-menu__item')
 
-var toggleVisible = function(element) {
+var toggleDisplay = function(element) {
   if (element.style.display === 'block') {
     return element.style.display = 'none';
   } else {
@@ -7,20 +10,26 @@ var toggleVisible = function(element) {
   }
 }
 
-var hamburgerMenu = document.getElementById("hamburger-icon")
-var mobileMenu = document.getElementById('mobile-menu')
+var closeAllButSelected = function(selection) {
+  mobileMenuItems.forEach( function(element) {
+    var mobileDropdown = element.querySelector('.mobile-dropdown');
+    if (element.innerHTML === selection.innerHTML) {
+      toggleDisplay(mobileDropdown);
+    } else if (mobileDropdown) {
+      return mobileDropdown.style.display = 'none';
+    }
+  })
+}
 
 hamburgerMenu.addEventListener('click', function() {
-  toggleVisible(mobileMenu);
+  toggleDisplay(mobileMenu);
 });
 
-var mobileMenuItems = document.querySelectorAll('.mobile-menu__item')
-
-mobileMenuItems.forEach( function(element){
+mobileMenuItems.forEach( function(element) {
   var dropdown = element.querySelector('.mobile-dropdown');
   if (dropdown) {
     element.addEventListener('click', function() {
-      toggleVisible(dropdown);
+      closeAllButSelected(element);
     });
   }
 });
