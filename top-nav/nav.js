@@ -13,7 +13,7 @@ var toggleDisplay = function(element) {
 var closeAllButSelected = function(selection) {
   mobileMenuItems.forEach( function(element) {
     var mobileDropdown = element.querySelector('.mobile-dropdown');
-    if (element.innerHTML === selection.innerHTML) {
+    if (selection && element.innerHTML === selection.innerHTML) {
       toggleDisplay(mobileDropdown);
     } else if (mobileDropdown) {
       return mobileDropdown.style.display = 'none';
@@ -22,6 +22,7 @@ var closeAllButSelected = function(selection) {
 }
 
 hamburgerMenu.addEventListener('click', function() {
+  closeAllButSelected();
   toggleDisplay(mobileMenu);
 });
 
