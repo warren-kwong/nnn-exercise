@@ -29,4 +29,4 @@ Fresh food for dogs and cats, delivered - NomNomNow
   - Make a [page](https://nomnomnow-dog-food-comparision-calculator-warrenkwong.netlify.com/) to demo functionality.
 
 ##### Demo Preview
-![Dog Food Comparision Calculator Preview](./_previews/dog-food-comparison-calculator-preview.png "Dog Food Comparison Calculator Preview")
+![Dog Food Comparision Calculator Preview](./_previews/dog-food-comparison-calculator-kwong-preview.png "Dog Food Comparison Calculator Preview")
