@@ -38,6 +38,12 @@ input {
   width: 100%;
 }
 
+.brand {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
 .calculator__container {
   max-width: 500px;
   margin: 0 10% 10px 10%;
@@ -69,11 +75,51 @@ input {
   margin-bottom: 20px;
 }
 
+.logo {
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.results__container {
+  background-color: #fff
+}
+
+.results__label {
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.results__left {
+  border-right: 2px solid #e0e0e0;
+  padding: 70px 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 50%;
+}
+
+.results__number {
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.results__right {
+  display: flex;
+  padding: 20px 0 0 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+}
+
 .shmalberg-photo {
   border-radius: 80px;
   float: left;
   margin: 0 10px 10px 0;
   width: 80px;
+}
+
+.text--color-orange {
+  color: #f06324;
 }
 
 .text--color-grey {
@@ -82,6 +128,10 @@ input {
 
 .text--color-teal {
   color: #23ac9b;
+}
+
+.text--color-yellow {
+  color: #e2d16e;
 }
 
 .text--bold {

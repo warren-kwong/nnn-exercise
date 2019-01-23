@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 
-import './dogFoodComparisonCalculator.css';
+import Results from './Results.jsx'
+
+import './main.css';
+
+let timeout = null;
 
 export default class DogFoodComparisonCalculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dogBrand: 'Blue Buffalo',
-      nomType: 'Porkalicious Potluck'
+      dogBrand: 'Dog Brand',
+      nomType: 'Porkalicious Potluck',
+      protein: 0,
+      fat: 0,
+      caloricDensity: 0,
+      showResults: false
     };
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -15,10 +23,24 @@ export default class DogFoodComparisonCalculator extends Component {
 
   onChangeHandler(e) {
     this.setState({ [e.target.name]: e.target.value });
-    console.log('state: ',this.state);
+    if (this.validateInputs()) {
+      this.setState({ showResults: true });
+    } else {
+      this.setState({ showResults: false })
+    }
+  }
+
+  validateInputs() {
+    let validP = this.state.protein > 0 && this.state.protein <=60;
+    let validF = this.state.fat > 0 && this.state.fat <= 60;
+    let validCD = this.state.caloricDensity >= 200 && this.state.caloricDensity <= 8000
+    return validP && validF && validCD && this.state.dogBrand !== 'Dog Brand';
   }
 
   render() {
+
+    const { dogBrand, nomType, protein, fat, caloricDensity, showResults } = this.state;
+
     return (
       <div className="calculator__container">
         <h1 className="calculator__header">Dog food comparison calculator</h1>
@@ -37,9 +59,10 @@ export default class DogFoodComparisonCalculator extends Component {
               <select 
                 name="dogBrand" 
                 id="dog-food-select"
-                onChange={ this.onChangeHandler }
-                defaultValue={ this.state.dogBrand }
+                onChange={this.onChangeHandler}
+                defaultValue={ dogBrand }
                 >
+                <option value="Dog Brand">-- choose one --</option>
                 <option value="Blue Buffalo">Blue Buffalo</option>
                 <option value="Purina">Purina</option>
                 <option value="Taste of the Wild">Taste of the Wild</option>
@@ -51,8 +74,8 @@ export default class DogFoodComparisonCalculator extends Component {
               <select 
                 name="nomType" 
                 id="nomnomnow-select"
-                onChange={ this.onChangeHandler }
-                defaultValue={ this.state.nomType }
+                onChange={this.onChangeHandler}
+                defaultValue={ nomType }
                 >
                 <option value="Porkalicious Potluck">Porkalicious Potluck</option>
                 <option value="Heartland Beef Mash">Heartland Beef Mash</option>
@@ -62,27 +85,51 @@ export default class DogFoodComparisonCalculator extends Component {
             </div>
           </div>
           <div className="form__row">
-            <span className="text--bold">{this.state.dogBrand}</span>'s nutrient info:
+            <span className="text--bold">{dogBrand}</span>'s nutrient info:
           </div>
           <div className="form__row">
             <div className='form-col-3'>
-              <label htmlFor="protein">% protein(min.)</label>
-              <input type="text" name="protein"/>
+              <label htmlFor="protein">% protein (min.)</label>
+              <input 
+                name="protein" 
+                type="number"
+                min="1"
+                max="60"
+                value={protein} 
+                onChange={this.onChangeHandler}
+                />
             </div>
             <div className='form-col-3'>
-              <label htmlFor="fat">% fat(min.)</label>
-              <input type="text" name="fat"/>
+              <label htmlFor="fat">% fat (min.)</label>
+              <input 
+                name="fat" 
+                type="number" 
+                min="1"
+                max="60"
+                value={fat} 
+                onChange={this.onChangeHandler}
+                />
             </div>
             <div className='form-col-3'>
               <label htmlFor="caloricDensity">Caloric density (kcal/kg)</label>
-              <input type="text" name="caloricDensity"/>
+              <input 
+                name="caloricDensity" 
+                type="number" 
+                min="200"
+                max="8000"
+                value={caloricDensity} 
+                onChange={this.onChangeHandler}
+                />
             </div>
           </div>
-          <div className="form__divider text--color-grey">
-            <div>Fill out the form to get a nutrient comparison</div>
-          </div>
-          {/* DIVIDER */}
-          <div></div>
+          <Results 
+            dogBrand={dogBrand}
+            nomType={nomType}
+            protein={Number(protein)}
+            fat={Number(fat)}
+            caloricDensity={Number(caloricDensity)}
+            showResults={showResults}
+          />
         </form>
       </div>
     )
