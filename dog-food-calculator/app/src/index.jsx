@@ -1,22 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
-class DogFoodComparisonCalculator extends Component {
-  constructor() {
-    super();
-    this.state = {
-
-    };
-  }
-
-  render() {
-    return (
-      <div> Welcome to the Application </div>
-    )
-  }
-}
+import DogFoodComparisonCalculator from './components/DogFoodComparisonCalculator.jsx';
 
 render(
-  <DogFoodComparisonCalculator/>,
+  <DogFoodComparisonCalculator/>, 
   document.getElementById('root')
 );
