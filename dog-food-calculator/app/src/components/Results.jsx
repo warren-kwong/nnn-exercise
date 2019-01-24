@@ -69,6 +69,20 @@ export default class Results extends Component {
                 <h1 className="results__number text--color-yellow">{nomData[nomType].carb}</h1>
               </div>
             </div>
+            <div className="form__row results__footer">
+              Learn about<a className="results__footer-link text--color-orange" href="#">the role of protein, fat, and carbs </a>
+              in a dog's diet.
+            </div>
+            <div className="form__row results__disclaimer text--color-grey">
+              * All units above are given in grams per 1000 calories (g/kcal)
+            </div>
+          </div>
+          <div className="results__disclaimer text--color-grey">
+            The information for other brands' foods should be used as a guide only, albeit one that is in most cases better than the percentage. Actual values should be available from the manufacturer. NomNomNow is not liable for any misuse, inaccuracy, or other legal shenanigans related to the above.
+          </div>
+          <div className="results__cta">
+            <h2 className="cta">Ready to go fresh?</h2>
+            <a className="cta__link" href="#">Let's get started</a>
           </div>
         </div>
       )
